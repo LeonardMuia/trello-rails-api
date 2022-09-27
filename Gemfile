@@ -5,6 +5,13 @@ ruby '3.0.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
+
+#use rack cors to whitelist our frontend
+gem 'rack-cors'
+
+#create environmental variables
+gem 'dotenv-rails'
+
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.4'
 # Use Puma as the app server
