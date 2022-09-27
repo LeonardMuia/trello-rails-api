@@ -9,6 +9,9 @@ gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 #use rack cors to whitelist our frontend
 gem 'rack-cors'
 
+#use rest-client to access rest client
+gem 'rest-client'
+
 #create environmental variables
 gem 'dotenv-rails'
 
