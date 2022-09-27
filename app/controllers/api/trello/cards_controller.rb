@@ -1,4 +1,4 @@
-class CardsController < ApplicationController
+class Api::Trello::CardsController < ApplicationController
   before_action :set_card, only: [:show, :update, :destroy]
 
   # GET /cards

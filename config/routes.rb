@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-  resources :cards
-  resources :lists
   namespace :api do 
     namespace :trello do
-
+      resources :cards
+      resources :lists
     end
   end
 end
