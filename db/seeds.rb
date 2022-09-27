@@ -8,32 +8,46 @@
 
 # require 'rest-client'
 
-# def api_key
-#     ENV['API_KEY']
-# end
+def api_key
+    ENV['API_KEY']
+end
 
-# def token 
-#     ENV['TOKEN']
-# end
+def token 
+    ENV['TOKEN']
+end
 
-# def idList
-#     ENV['ID_LIST']
-# end
+def idList
+    ENV['ID_LIST']
+end
 
-# def idBoard
-#     ENV['ID_BOARD']
-# end
+def idBoard
+    ENV['ID_BOARD']
+end
 
-# def get_lists
+BASE_URL = "https://api.trello.com/1"
+
+def get_lists
     
-#     lists = RestClient.get("https://api.trello.com/1/boards/#{idBoard}/lists?key=#{api_key}&token=#{token}")
+    lists = RestClient.get("#{BASE_URL}/boards/#{idBoard}/lists?key=#{api_key}&token=#{token}")
 
-#     lists_array = JSON.parse(lists)
+    lists_array = JSON.parse(lists)
 
-#     lists_array.each do |s|
-#         List.create(name: s["name"])
-#     end
-# end
+    lists_array.each do |item|
+        List.create(id: item["id"], name: item["name"], board: item["idBoard"])
+    end 
 
-# get_lists()
+end
 
+get_lists()
+
+def get_cards
+
+    cards = RestClient.get("#{BASE_URL}/lists/#{idList}/cards?key=#{api_key}&token=#{token}")
+
+    cards_array = JSON.parse(cards)
+
+    cards_array.each do |item|
+        Card.create(id: item["id"], name: item["name"], list: item["idList"])
+    end
+
+end
