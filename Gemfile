@@ -11,6 +11,7 @@ gem 'rack-cors'
 
 #use rest-client to access rest client
 gem 'rest-client'
+gem 'json'
 
 #create environmental variables
 gem 'dotenv-rails'
