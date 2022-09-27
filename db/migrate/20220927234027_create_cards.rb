@@ -1,7 +1,7 @@
 class CreateCards < ActiveRecord::Migration[6.1]
   def change
     create_table :cards do |t|
-      t.string :id
+      t.string :cardId
       t.string :name
       t.string :list
 

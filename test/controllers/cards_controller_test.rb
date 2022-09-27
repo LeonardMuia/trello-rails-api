@@ -12,7 +12,7 @@ class CardsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create card" do
     assert_difference('Card.count') do
-      post cards_url, params: { card: { id: @card.id, list: @card.list, name: @card.name } }, as: :json
+      post cards_url, params: { card: { cardId: @card.cardId, list: @card.list, name: @card.name } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class CardsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update card" do
-    patch card_url(@card), params: { card: { id: @card.id, list: @card.list, name: @card.name } }, as: :json
+    patch card_url(@card), params: { card: { cardId: @card.cardId, list: @card.list, name: @card.name } }, as: :json
     assert_response 200
   end
 

@@ -33,7 +33,7 @@ def get_lists
     lists_array = JSON.parse(lists)
 
     lists_array.each do |item|
-        List.create(id: item["id"], name: item["name"], board: item["idBoard"])
+        List.create(listId: item["id"], name: item["name"], board: item["idBoard"])
     end 
 
 end
@@ -47,7 +47,9 @@ def get_cards
     cards_array = JSON.parse(cards)
 
     cards_array.each do |item|
-        Card.create(id: item["id"], name: item["name"], list: item["idList"])
+        Card.create(cardId: item["id"], name: item["name"], list: item["idList"])
     end
 
 end
+
+get_cards()
