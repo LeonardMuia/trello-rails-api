@@ -32,7 +32,7 @@ export default(props) => {
     }
 
     const cards = card.map( (data) => (
-            props.idList === data.list ? renderCard(data) : false
+            props.idList === data.idList ? renderCard(data) : false
         )
     )
 

@@ -1,11 +1,28 @@
 class Api::Trello::CardsController < ApplicationController
   before_action :set_card, only: [:show, :update, :destroy]
 
+  def api_key
+    ENV['API_KEY']
+  end
+
+  def token 
+    ENV['TOKEN']
+  end
+
+  def idList
+    ENV['ID_LIST']
+  end
+
+  def idBoard
+    ENV['ID_BOARD']
+  end
+
+  BASE_URL = "https://api.trello.com/1"
+
   # GET /cards
   def index
-    @cards = Card.all
-
-    render json: @cards
+    cards = RestClient.get("#{BASE_URL}/boards/#{idBoard}/cards?key=#{api_key}&token=#{token}")
+    render json: cards
   end
 
   # GET /cards/1
@@ -15,7 +32,8 @@ class Api::Trello::CardsController < ApplicationController
 
   # POST /cards
   def create
-    @card = Card.new(card_params)
+    
+    lists = RestClient.post("#{BASE_URL}/card?idList=#{idList}&key=#{api_key}&token=#{token}")
 
     if @card.save
       render json: @card, status: :created, location: @card
@@ -46,6 +64,6 @@ class Api::Trello::CardsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def card_params
-      params.require(:card).permit(:cardId, :name, :list)
+      params.require(:card).permit(:name)
     end
 end

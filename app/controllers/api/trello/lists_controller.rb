@@ -1,11 +1,28 @@
 class Api::Trello::ListsController < ApplicationController
   before_action :set_list, only: [:show, :update, :destroy]
 
+  def api_key
+    ENV['API_KEY']
+  end
+
+  def token 
+    ENV['TOKEN']
+  end
+
+  def idList
+    ENV['ID_LIST']
+  end
+
+  def idBoard
+    ENV['ID_BOARD']
+  end
+
+  BASE_URL = "https://api.trello.com/1"
+
   # GET /lists
   def index
-    @lists = List.all
-
-    render json: @lists
+    lists = RestClient.get("#{BASE_URL}/boards/#{idBoard}/lists?key=#{api_key}&token=#{token}")
+    render json: lists
   end
 
   # GET /lists/1
