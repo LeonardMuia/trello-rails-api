@@ -3,14 +3,6 @@ import axios from "axios"
 
 export default(props) => {
 
-    
-
-    const hideForm = function (event, id) {
-        const form = document.getElementById(`${id}`); 
-        if(form) {
-            form.style.display = "none";
-        }
-    }
 
     function successAlert(message) {
         const Toast = Swal.mixin({
@@ -50,20 +42,29 @@ export default(props) => {
           })
     }
 
+    function resetForm(id) {
+        document.getElementById(`text-area-${id}`).value = ""
+        const form = document.getElementById(`${id}`); 
+        if(form) {
+            form.style.display = "none";
+        }
+    }
+
     function submitForm() {
         
         const title = document.getElementById(`text-area-${props.idList}`).value
 
         const createCard = function(title) {
-                const url = "http://localhost:3000/api/trello/cards";
+                const url = `http://localhost:3000/api/trello/cards?list=${props.idList}`;
                 axios.post(url, {
                     name: title
                 }).then(function(response){
-                    if(response.success) {
-                        console.log(response)
+                    if(response) {
+                        resetForm(props.idList)
+                        successAlert("New card has been created")
                     }
                 }).catch(error => {
-                    errorAlert(error)
+                    errorAlert("An error has occurred.")
                 } )
         }
 

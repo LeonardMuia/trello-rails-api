@@ -33,13 +33,20 @@ class Api::Trello::CardsController < ApplicationController
   # POST /cards
   def create
     
-    lists = RestClient.post("#{BASE_URL}/card?idList=#{idList}&key=#{api_key}&token=#{token}")
-
-    if @card.save
-      render json: @card, status: :created, location: @card
-    else
-      render json: @card.errors, status: :unprocessable_entity
+    begin 
+      RestClient.post "#{BASE_URL}/cards?idList=#{card_params["list"]}&key=#{api_key}&token=#{token}", {"name": card_params["name"]}
+    rescue RestClient::Unauthorized, RestClient::Forbidden => err
+      puts 'Access denied'
+      return err.response
+    rescue RestClient::ExceptionWithResponse => err
+      case err.http_code
+      when 301, 302, 307, 204
+        err.response.follow_redirection
+      else
+        raise
+      end
     end
+
   end
 
   # PATCH/PUT /cards/1
@@ -64,6 +71,6 @@ class Api::Trello::CardsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def card_params
-      params.require(:card).permit(:name)
+      params.permit(:name, :list)
     end
 end
