@@ -41,7 +41,7 @@ function App() {
         <div className="container main-content">
           <section className="section">
                 <div className="row">
-                  { list === "undefined" ? <EmptyPage/> : [...lists] }
+                  { !list.length ? <EmptyPage/> : [...lists] }
                 </div>
             </section>
         </div>
