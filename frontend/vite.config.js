@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   proxy: {
     '/api': {
-         target: 'https://localhost:3000/api/trello',
+         target: 'http://localhost:3000/api/trello/', /*  Doesn't work...needs to debug */
          changeOrigin: true,
          secure: false,      
          ws: true,

@@ -43,3 +43,5 @@ def get_cards
 end
 
 get_cards()
+
+binding.pry

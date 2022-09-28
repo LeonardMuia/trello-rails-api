@@ -5,17 +5,23 @@ import Card from "./Card"
 
 export default(props) => {
 
-    const [card, setCard] = useState([])
+    const CardsUrl = "http://localhost:3000/api/trello/cards"
+
+    const [card, setCards] = useState([])
+
+    function getCards() {
+        return axios.get(CardsUrl).then(response => response.data)
+      }
 
     useEffect(() => {
-
-        fetch('/trello/cards').then(response => response.json())
-        .then(data => {
-            setCard(data)
+        let mounted = true
+        getCards().then(items => {
+          if(mounted){
+            setCards(items)
           }
-        ).catch(error => {
-            console.log(error)
         })
+
+        return () => (mounted = false)
 
     }, [])
 
