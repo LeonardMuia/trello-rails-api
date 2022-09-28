@@ -71,6 +71,6 @@ class Api::Trello::CardsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def card_params
-      params.permit(:name, :list)
+      params.permit(:name, :list, :card)
     end
 end

@@ -73,7 +73,10 @@ export default(props) => {
 
     function resetForm(id) {
         document.getElementById(`text-area-${id}`).value = ""
-        hideForm(id)
+        const form = document.getElementById(`${id}`); 
+        if(form) {
+            form.style.display = "none";
+        }
     }
 
     return (

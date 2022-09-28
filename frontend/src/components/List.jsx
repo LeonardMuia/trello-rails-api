@@ -11,23 +11,23 @@ export default(props) => {
 
     function getCards() {
         return axios.get(CardsUrl).then(response => response.data)
-      }
+    }
 
-    function renderCards() {
-        useEffect(() => {
-            let mounted = true
-            getCards().then(items => {
-              if(mounted){
-                setCards(items)
-              }
-            })
-    
-            return () => (mounted = false)
-    
-        }, [])
-    } 
+    useEffect(() => {
+        let mounted = true
+        getCards().then(items => {
+          if(mounted){
+            setCards(items)
+          }
+        })
 
-    renderCards()
+        return () => (mounted = false)
+
+    }, [])
+
+    function reRender() {
+        console.log("I have rerendered")
+    }
 
     function renderCard(data) {
         return (
@@ -49,7 +49,7 @@ export default(props) => {
 
     return (
  
-        <div className="col-md-4">
+        <div className="col-md-6">
             <div className="card">
                 <div className="card-body">
                     <div className="card--top">
@@ -58,7 +58,7 @@ export default(props) => {
                     </div>
                     <div className="card--items">
                         <form style={{display:"none"}} id={props.idList} className="card--form">
-                            <AddCard idList={props.idList} handler={renderCards}  />
+                            <AddCard idList={props.idList} handler={reRender}  />
                         </form>
                         {cards}
                     </div>
