@@ -13,17 +13,21 @@ export default(props) => {
         return axios.get(CardsUrl).then(response => response.data)
       }
 
-    useEffect(() => {
-        let mounted = true
-        getCards().then(items => {
-          if(mounted){
-            setCards(items)
-          }
-        })
+    function renderCards() {
+        useEffect(() => {
+            let mounted = true
+            getCards().then(items => {
+              if(mounted){
+                setCards(items)
+              }
+            })
+    
+            return () => (mounted = false)
+    
+        }, [])
+    } 
 
-        return () => (mounted = false)
-
-    }, [])
+    renderCards()
 
     function renderCard(data) {
         return (
@@ -54,7 +58,7 @@ export default(props) => {
                     </div>
                     <div className="card--items">
                         <form style={{display:"none"}} id={props.idList} className="card--form">
-                            <AddCard idList={props.idList} />
+                            <AddCard idList={props.idList} handler={renderCards}  />
                         </form>
                         {cards}
                     </div>

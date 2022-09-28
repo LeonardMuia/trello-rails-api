@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import TopBar from "./components/TopBar"
 import List from "./components/List"
-import EmptyPage from "./components/EmptyPage"
+import Loading from "./components/Loading"
 import './App.css'
 
 function App() {
@@ -43,7 +43,7 @@ function App() {
         <div className="container main-content">
           <section className="section">
                 <div className="row">
-                  { !list.length ? <EmptyPage/> : [...lists] }
+                  { !list.length ? <Loading/> : [...lists] }
                 </div>
             </section>
         </div>
