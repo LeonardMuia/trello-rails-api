@@ -3,5 +3,13 @@ import react from '@vitejs/plugin-react'
 
 
 export default defineConfig({
-  plugins: [react()]
+  plugins: [react()],
+  proxy: {
+    '/api': {
+         target: 'https://localhost:3000/trello',
+         changeOrigin: true,
+         secure: false,      
+         ws: true,
+     }
+}
 })
