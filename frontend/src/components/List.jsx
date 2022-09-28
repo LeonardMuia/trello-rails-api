@@ -25,11 +25,16 @@ export default(props) => {
 
     }, [])
 
-    const cards = card.map((data) => {
-      return (
-        <Card key={data.id} name={data.name}/>
-      )
-    })
+    function renderCard(data) {
+        return (
+            <Card key={data.id} name={data.name} />
+        )
+    }
+
+    const cards = card.map( (data) => (
+            props.idList === data.list ? renderCard(data) : false
+        )
+    )
 
     const openForm = function (event, id) {
         const form = document.getElementById(`${id}`); 

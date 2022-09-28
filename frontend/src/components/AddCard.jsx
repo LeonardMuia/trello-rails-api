@@ -55,8 +55,8 @@ export default(props) => {
         const title = document.getElementById(`text-area-${props.idList}`).value
 
         const createCard = function(title) {
-
-                axios.post("/create-card", {
+                const CreateCardUrl = "http://localhost:3000/api/trello/cards";
+                axios.post(CreateCardUrl, {
                     name: title
                 }).then(function(response){
                     if(response.success) {

@@ -28,8 +28,6 @@ function App() {
 
     }, [])
 
-    console.log(list)
-
     const lists = list.map((data) => {
       return (
         <List key={data.id} name={data.name} idList={data.listId} />

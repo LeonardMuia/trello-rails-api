@@ -32,7 +32,7 @@ get_lists()
 
 def get_cards
 
-    cards = RestClient.get("#{BASE_URL}/lists/#{idList}/cards?key=#{api_key}&token=#{token}")
+    cards = RestClient.get("#{BASE_URL}/boards/#{idBoard}/cards?key=#{api_key}&token=#{token}")
 
     cards_array = JSON.parse(cards)
 
@@ -43,5 +43,3 @@ def get_cards
 end
 
 get_cards()
-
-binding.pry
