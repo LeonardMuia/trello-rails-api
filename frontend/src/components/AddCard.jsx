@@ -55,13 +55,12 @@ export default(props) => {
         const title = document.getElementById(`text-area-${props.idList}`).value
 
         const createCard = function(title) {
-                const CreateCardUrl = "http://localhost:3000/api/trello/cards";
-                axios.post(CreateCardUrl, {
+                const url = "http://localhost:3000/api/trello/cards";
+                axios.post(url, {
                     name: title
                 }).then(function(response){
                     if(response.success) {
-                        successAlert("Success. Refresh page to see changes.")
-                        hideForm
+                        console.log(response)
                     }
                 }).catch(error => {
                     errorAlert(error)
