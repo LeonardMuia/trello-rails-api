@@ -92,7 +92,7 @@ ID_BOARD=YOURIDBOARDGOESHERE
 
 ```
 
-### Start the server
+### Start the rails server
 
 Navigate to your root folder in the terminal and enter the following command to start the rails app.
 
@@ -101,6 +101,21 @@ Navigate to your root folder in the terminal and enter the following command to 
 rails s
 
 ```
+
+### Start the React server
+
+Navigate to the frontend folder in the terminal and run the following command to start the react app. 
+
+
+```bash
+
+npm run dev
+
+```
+
+#### Take note
+Make sure it runs on port **5173** if not, find the ``Cors.rb`` and whitelist your localhost url for the React app by editing the origins. This will eliminate CORS error.
+
 
 **Finally, navigate to the URL provided in by the rails server to view your application.**
 
