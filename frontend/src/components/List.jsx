@@ -8,6 +8,8 @@ export default(props) => {
     const CardsUrl = "http://localhost:3000/api/trello/cards"
 
     const [card, setCards] = useState([])
+    
+    let title=""
 
     function getCards() {
         return axios.get(CardsUrl).then(response => response.data)
@@ -25,8 +27,17 @@ export default(props) => {
 
     }, [])
 
-    function reRender() {
-        console.log("I have rerendered")
+    function reRender(title) {
+        useEffect(() => {
+            let mounted = true
+            
+            setCards( (prev) => [{
+                ...prev,
+                "name": title
+            }])
+    
+            return () => (mounted = false)
+        }, [])
     }
 
     function renderCard(data) {
@@ -58,7 +69,7 @@ export default(props) => {
                     </div>
                     <div className="card--items">
                         <form style={{display:"none"}} id={props.idList} className="card--form">
-                            <AddCard idList={props.idList} handler={reRender}  />
+                            <AddCard idList={props.idList} handler={reRender} newCard={title} />
                         </form>
                         {cards}
                     </div>

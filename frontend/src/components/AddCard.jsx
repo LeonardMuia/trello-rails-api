@@ -13,9 +13,8 @@ export default(props) => {
                     name: title
                 }).then(function(response){
                     if(response) {
-                        resetForm(props.idList)
-                        successAlert("New card has been created")
                         props.handler
+                        resetForm(props.idList)
                     }
                 }).catch(error => {
                     errorAlert("An error has occurred.")
