@@ -21,8 +21,19 @@ class Api::Trello::ListsController < ApplicationController
 
   # GET /lists
   def index
+    
     lists = RestClient.get("#{BASE_URL}/boards/#{idBoard}/lists?key=#{api_key}&token=#{token}")
-    render json: lists
+
+    lists_array = JSON.parse(lists)
+
+    lists_array.each do |item|
+      List.create(listId: item["id"], name: item["name"], board: item["idBoard"])
+    end 
+
+    # Use Etag to get the new values
+
+    # render json:@list
+
   end
 
   # GET /lists/1

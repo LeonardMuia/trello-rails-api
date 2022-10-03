@@ -4,7 +4,6 @@ class CreateCards < ActiveRecord::Migration[6.1]
       t.string :cardId
       t.string :name
       t.string :list
-
       t.timestamps
     end
   end
