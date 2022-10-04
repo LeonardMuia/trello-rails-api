@@ -1,24 +1,8 @@
-def api_key
-    ENV['API_KEY']
-end
-
-def token 
-    ENV['TOKEN']
-end
-
-def idList
-    ENV['ID_LIST']
-end
-
-def idBoard
-    ENV['ID_BOARD']
-end
-
 BASE_URL = "https://api.trello.com/1"
 
 def get_lists
     
-    lists = RestClient.get("#{BASE_URL}/boards/#{idBoard}/lists?key=#{api_key}&token=#{token}")
+    lists = RestClient.get("#{BASE_URL}/boards/#{ENV['ID_BOARD']}/lists?key=#{ENV['API_KEY']}&token=#{ENV['TOKEN']}")
 
     lists_array = JSON.parse(lists)
 
@@ -32,7 +16,7 @@ get_lists()
 
 def get_cards
 
-    cards = RestClient.get("#{BASE_URL}/boards/#{idBoard}/cards?key=#{api_key}&token=#{token}")
+    cards = RestClient.get("#{BASE_URL}/boards/#{ENV['ID_BOARD']}/cards?key=#{ENV['API_KEY']}&token=#{ENV['TOKEN']}")
 
     cards_array = JSON.parse(cards)
 
