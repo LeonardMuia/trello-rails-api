@@ -17,20 +17,18 @@ export default(props) => {
     }
 
 
-    setTimeout(
-        useEffect(() => {
+    // useEffect(() => {
 
-            let mounted = true
-            getCards().then(items => {
-              if(mounted){
-                setCards(items)
-              }
-            })
-    
-            return () => (mounted = false)
-    
-        })
-    , 10000)
+    //     let mounted = true
+    //     getCards().then(items => {
+    //       if(mounted){
+    //         setCards(items)
+    //       }
+    //     })
+
+    //     return () => (mounted = false)
+
+    // },[])
 
     const cards = card.map( (data) => (
             props.idList === data.idList ? renderCard(data) : false
@@ -66,7 +64,7 @@ export default(props) => {
 
     return (
  
-        <div className="col-md-6">
+        <div className="col-md-4">
             <div className="card">
                 <div className="card-body">
                     <div className="card--top">
