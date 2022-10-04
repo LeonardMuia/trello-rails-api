@@ -18,6 +18,7 @@ function App() {
 
     useEffect(() => {
         let mounted = true
+        
         getLists().then(items => {
           if(mounted){
             setLists(items)

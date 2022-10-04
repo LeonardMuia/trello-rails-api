@@ -2,43 +2,40 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import AddCard from "./AddCard"
 import Card from "./Card"
+import EmptyList from "./EmptyList"
 
 export default(props) => {
+
+    // Trello Request Limit is 300 requests per 10 seconds for each API key
 
     const CardsUrl = "http://localhost:3000/api/trello/cards"
 
     const [card, setCards] = useState([])
-    
-    let title=""
 
     function getCards() {
         return axios.get(CardsUrl).then(response => response.data)
     }
 
-    useEffect(() => {
-        let mounted = true
-        getCards().then(items => {
-          if(mounted){
-            setCards(items)
-          }
-        })
 
-        return () => (mounted = false)
-
-    }, [])
-
-    function reRender(title) {
+    setTimeout(
         useEffect(() => {
+
             let mounted = true
-            
-            setCards( (prev) => [{
-                ...prev,
-                "name": title
-            }])
+            getCards().then(items => {
+              if(mounted){
+                setCards(items)
+              }
+            })
     
             return () => (mounted = false)
-        }, [])
-    }
+    
+        })
+    , 10000)
+
+    const cards = card.map( (data) => (
+            props.idList === data.idList ? renderCard(data) : false
+        )
+    )
 
     function renderCard(data) {
         return (
@@ -46,10 +43,19 @@ export default(props) => {
         )
     }
 
-    const cards = card.map( (data) => (
-            props.idList === data.idList ? renderCard(data) : false
+
+    function addCard(listId, title) {
+        // Add Card to the State
+    }   
+
+    
+    function renderEmpty() {
+        return (
+            <EmptyList/>
         )
-    )
+    }
+
+    
 
     const openForm = function (event, id) {
         const form = document.getElementById(`${id}`); 
@@ -69,7 +75,7 @@ export default(props) => {
                     </div>
                     <div className="card--items">
                         <form style={{display:"none"}} id={props.idList} className="card--form">
-                            <AddCard idList={props.idList} handler={reRender} newCard={title} />
+                            <AddCard idList={props.idList} handler={event=> addCard(event, listId, title )}/>
                         </form>
                         {cards}
                     </div>

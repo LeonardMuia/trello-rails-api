@@ -21,8 +21,10 @@ class Api::Trello::CardsController < ApplicationController
 
   # GET /cards
   def index
+
     cards = RestClient.get("#{BASE_URL}/boards/#{idBoard}/cards?key=#{api_key}&token=#{token}")
     render json: cards
+
   end
 
   # GET /cards/1
@@ -71,6 +73,6 @@ class Api::Trello::CardsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def card_params
-      params.permit(:name, :list, :card)
+      params.permit(:name, :list, :card=>{})
     end
 end
