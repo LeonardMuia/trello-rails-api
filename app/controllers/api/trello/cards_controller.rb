@@ -4,8 +4,7 @@ class Api::Trello::CardsController < ApplicationController
   # GET /cards
   def index
 
-    @cards = cards.all
-
+    @cards = Card.get_cards
     render json: @cards
 
   end

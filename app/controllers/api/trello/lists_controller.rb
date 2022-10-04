@@ -3,8 +3,10 @@ class Api::Trello::ListsController < ApplicationController
 
   # GET /lists
   def index
-    @lists = List.get_list
+
+    @lists = List.get_lists
     render json: @lists
+    
   end
 
   # GET /lists/1

@@ -1,5 +1,11 @@
+require './lib/api/trello_card'
+
 class Card < ApplicationRecord
     belongs_to :list
-    validates_uniqueness_of :cardId
     
+    def self.get_cards
+        list = Api::TrelloCard.new
+        list.create_list
+    end
+
 end

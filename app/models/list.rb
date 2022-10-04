@@ -1,9 +1,8 @@
 require './lib/api/trello_list'
 
 class List < ApplicationRecord
-    has_many :cards, dependent: :destroy
 
-    def self.get_list
+    def self.get_lists
         list = Api::TrelloList.new
         list.create_list
     end
