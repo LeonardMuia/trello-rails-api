@@ -40,7 +40,7 @@ To generate API Credentials for your Trello Account, follow the guide provided i
 - **API Key**
 - **Access Token**
 - **Id of a Board**
-- **Id of the Lists in a Board**
+- **API URL**
 
 To learn how to get such data please read the [**Trello API Documentation**](https://developer.atlassian.com/cloud/trello/rest/)
 
@@ -85,9 +85,9 @@ Create a ```.env ``` file in the root of your rails application and add the foll
 
 ```ruby
 
+BASE_URL = "https://api.trello.com/1"
 API_KEY=YOURAPIKEYGOESHERE
 TOKEN=YOURTOKENGOESHERE
-ID_LIST=YOURIDLISTGOESHERE
 ID_BOARD=YOURIDBOARDGOESHERE
 
 ```
