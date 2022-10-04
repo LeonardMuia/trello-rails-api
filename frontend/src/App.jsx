@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
+import axiosETAGCache from "axios-etag-cache"
 import TopBar from "./components/TopBar"
 import List from "./components/List"
 import Loading from "./components/Loading"
@@ -10,10 +11,12 @@ function App() {
 
     const ListsUrl = "http://localhost:3000/api/trello/lists";
 
+    const axiosWithETAG = axiosETAGCache(axios)
+
     const [list, setLists] = useState([])
 
     function getLists() {
-      return axios.get(ListsUrl).then(response => response.data)
+      return axiosWithETAG.get(ListsUrl).then(response => response.data)
     }
 
     useEffect(() => {
