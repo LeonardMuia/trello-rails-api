@@ -1,3 +1,5 @@
 class List < ApplicationRecord
-    validates_uniqueness_of :listId
+    has_many :cards, dependent: :destroy
+    
+    # validates_uniqueness_of :listId
 end

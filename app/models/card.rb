@@ -1,3 +1,4 @@
 class Card < ApplicationRecord
-    validates_uniqueness_of :cardId
+    belongs_to :list
+    # validates_uniqueness_of :cardId
 end
