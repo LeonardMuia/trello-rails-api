@@ -16,18 +16,26 @@ function App() {
       return axios.get(ListsUrl).then(response => response.data)
     }
 
+    function saveToLocalStorage() {
+      getLists().then(items => {
+        localStorage.setItem("lists", JSON.stringify(items) )
+      }) 
+    }
+
     useEffect(() => {
         let mounted = true
         
-        getLists().then(items => {
-          if(mounted){
-            setLists(items)
-          }
-        })
+        saveToLocalStorage()
+
+        const items = localStorage.getItem("lists")
+
+        if(mounted){
+          setLists(JSON.parse(items))
+        }
 
         return () => (mounted = false)
 
-    }, [])
+    },[])
 
 
 
