@@ -2,8 +2,8 @@ export default ()=> {
     return (
         <>
             <div className="top">
-                <h1 className="top--title">The Pizza Project</h1>
-                <img src={`/icons/pizza.svg`} className="top--icon"/>
+                <h1 className="top--title">Trello API</h1>
+                <h6 className="top--subtitle">Ruby on Rails Back-End and React Front-End</h6>
             </div>
         </>
     )

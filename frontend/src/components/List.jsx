@@ -6,8 +6,6 @@ import EmptyList from "./EmptyList"
 
 export default(props) => {
 
-    // Trello Request Limit is 300 requests per 10 seconds for each API key
-
     const CardsUrl = "http://localhost:3000/api/trello/cards"
 
     const [card, setCards] = useState([])
@@ -16,15 +14,24 @@ export default(props) => {
         return axios.get(CardsUrl).then(response => response.data)
     }
 
+    function saveCardsToLocalStorage() {
+        getCards().then(items => {
+          localStorage.setItem("cards", JSON.stringify(items) )
+        }) 
+    }
+
 
     useEffect(() => {
 
         let mounted = true
-        getCards().then(items => {
-          if(mounted){
-            setCards(items)
-          }
-        })
+
+        saveCardsToLocalStorage()
+
+        const items = localStorage.getItem("cards")
+
+        if(mounted){
+            setCards(JSON.parse(items))
+        }
 
         return () => (mounted = false)
 
@@ -41,9 +48,11 @@ export default(props) => {
         )
     }
 
+    console.log(cards)
+
 
     function addCard(listId, title) {
-        // Add Card to the State
+        
     }   
 
     
