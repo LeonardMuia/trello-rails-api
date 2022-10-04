@@ -17,18 +17,18 @@ export default(props) => {
     }
 
 
-    // useEffect(() => {
+    useEffect(() => {
 
-    //     let mounted = true
-    //     getCards().then(items => {
-    //       if(mounted){
-    //         setCards(items)
-    //       }
-    //     })
+        let mounted = true
+        getCards().then(items => {
+          if(mounted){
+            setCards(items)
+          }
+        })
 
-    //     return () => (mounted = false)
+        return () => (mounted = false)
 
-    // },[])
+    },[])
 
     const cards = card.map( (data) => (
             props.idList === data.idList ? renderCard(data) : false
