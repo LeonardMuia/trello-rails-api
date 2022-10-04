@@ -1,3 +1,5 @@
+require './lib/api/trello_list'
+
 class List < ApplicationRecord
     has_many :cards, dependent: :destroy
 
