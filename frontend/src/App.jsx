@@ -12,8 +12,9 @@ function App() {
 
     const [list, setLists] = useState([])
 
-    function getLists() {
-      return axios.get(ListsUrl).then(response => response.data)
+    async function getLists() {
+      const response = await axios.get(ListsUrl)
+      return response.data
     }
 
     function saveToLocalStorage() {

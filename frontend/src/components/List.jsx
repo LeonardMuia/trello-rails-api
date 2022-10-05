@@ -10,8 +10,9 @@ export default(props) => {
 
     const [card, setCards] = useState([])
 
-    function getCards() {
-        return axios.get(CardsUrl).then(response => response.data)
+    async function getCards() {
+        const response = await axios.get(CardsUrl)
+        return response.data
     }
 
     function saveCardsToLocalStorage() {
@@ -19,7 +20,6 @@ export default(props) => {
           localStorage.setItem("cards", JSON.stringify(items) )
         }) 
     }
-
 
     useEffect(() => {
 
@@ -48,21 +48,19 @@ export default(props) => {
         )
     }
 
-    console.log(cards)
-
-
     function addCard(listId, title) {
-        
-    }   
-
+        setCards({
+            ...prev,
+            "idList": listId,
+            "name": title
+        })
+    }
     
     function renderEmpty() {
         return (
             <EmptyList/>
         )
     }
-
-    
 
     const openForm = function (event, id) {
         const form = document.getElementById(`${id}`); 
