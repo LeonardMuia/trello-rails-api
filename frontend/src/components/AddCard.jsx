@@ -15,7 +15,6 @@ export default(props) => {
                     if(response) {
                         resetForm(props.idList)
                         successAlert("New card created successfully.")
-                        
                     }
                 }).catch(error => {
                     errorAlert("An error has occurred.")

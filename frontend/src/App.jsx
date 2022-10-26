@@ -7,7 +7,6 @@ import './App.css'
 
 function App() {
 
-
     const ListsUrl = "http://localhost:3000/api/trello/lists";
 
     const [list, setLists] = useState([])

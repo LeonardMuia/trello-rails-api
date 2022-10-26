@@ -25,6 +25,7 @@ class Api::Trello::CardsController < ApplicationController
     else
       render json: @list.errors, status: :unprocessable_entity
     end
+    
   end
 
   # PATCH/PUT /cards/1
