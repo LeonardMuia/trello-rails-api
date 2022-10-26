@@ -15,11 +15,13 @@ export default(props) => {
                     if(response) {
                         resetForm(props.idList)
                         successAlert("New card created successfully.")
-                        props.handler(props.idList,title)
+                        
                     }
                 }).catch(error => {
                     errorAlert("An error has occurred.")
                 } )
+
+                props.handler(props.idList,title)
         }
 
         title ? createCard(title) : errorAlert("Please provide a title for the card.");

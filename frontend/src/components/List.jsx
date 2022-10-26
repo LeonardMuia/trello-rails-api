@@ -49,11 +49,13 @@ export default(props) => {
     }
 
     function addCard(listId, title) {
-        setCards({
-            ...prev,
-            "idList": listId,
-            "name": title
-        })
+
+        console.log(listId)
+        // setCards({
+        //     ...prev,
+        //     "idList": listId,
+        //     "name": title
+        // })
     }
     
     function renderEmpty() {
