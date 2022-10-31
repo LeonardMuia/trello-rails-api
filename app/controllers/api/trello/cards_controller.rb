@@ -19,7 +19,7 @@ class Api::Trello::CardsController < ApplicationController
   # POST /cards
   def create
 
-    @cards = Card.add_card(list_params)
+    @cards = Card.add_card(card_params)
 
   end
 
@@ -47,4 +47,5 @@ class Api::Trello::CardsController < ApplicationController
     def card_params
       params.permit(:name, :list)
     end
+    
 end
