@@ -4,8 +4,12 @@ class Card < ApplicationRecord
     belongs_to :list
     
     def self.get_cards
-        list = Api::TrelloCard.new
-        list.create_list
+        card = Api::TrelloCard.new
+        card.get_cards
+    end
+
+    def self.add_card
+        card = Api::TrelloCard.new
     end
 
 end

@@ -18,14 +18,9 @@ class Api::Trello::CardsController < ApplicationController
 
   # POST /cards
   def create
-    @list = List.new(list_params)
 
-    if @list.save
-      render json: @list, status: :created, location: @list
-    else
-      render json: @list.errors, status: :unprocessable_entity
-    end
-    
+    @cards = Card.add_card(list_params)
+
   end
 
   # PATCH/PUT /cards/1
