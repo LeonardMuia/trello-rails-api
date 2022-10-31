@@ -10,7 +10,7 @@ export default(props) => {
         const createCard = function(title) {
                 const url = `http://localhost:3000/api/trello/cards`;
                 axios.post(url, {
-                    list: props.idList,
+                    idList: props.idList,
                     name: title
                 }).then(function(response){
                     if(response) {
