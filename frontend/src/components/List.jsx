@@ -48,16 +48,6 @@ export default(props) => {
         )
     }
 
-    function addCard(listId, title) {
-        console.log
-    }
-    
-    function renderEmpty() {
-        return (
-            <EmptyList/>
-        )
-    }
-
     const openForm = function (event, id) {
         const form = document.getElementById(`${id}`); 
         if(form) {
@@ -76,7 +66,7 @@ export default(props) => {
                     </div>
                     <div className="card--items">
                         <form style={{display:"none"}} id={props.idList} className="card--form">
-                            <AddCard idList={props.idList}/>
+                            <AddCard idList={props.idList} />
                         </form>
                         {cards}
                     </div>
