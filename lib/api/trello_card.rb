@@ -5,22 +5,14 @@ module Api
             cards_data = JSON.parse(cards)
         end
 
-        def add_card
-            # Sample API Request 'https://api.trello.com/1/cards?idList=5abbe4b7ddc1b351ef961414&key=APIKey&token=APIToken'
+        def add_card(card_params)
+            # Sample API Request 'https://api.trello.com/1/cards?idList=5abbe4b7ddc1b351ef961414&key=APIKey&token=APIToken' 
 
-            RestClient.post("#{ENV['BASE_URL']}/cards?idList=#{card_params[:list]}&key=#{ENV['API_KEY']}&token=#{ENV['TOKEN']}") {
-                
-                | response, request, result |
-                
-                case response.code
-                     
-                when 301, 302, 307
-                  response.follow_redirection
-                else
-                    response.return!
-                end
+            url = "#{ENV['BASE_URL']}/cards?key=#{ENV['API_KEY']}&token=#{ENV['TOKEN']}"
+            payload = {idList: card_params[:idList], name: card_params[:name]}
 
-            }
+            response = RestClient.post(url,payload)
+            puts response
 
         end
     end

@@ -49,7 +49,7 @@ export default(props) => {
     }
 
     function addCard(listId, title) {
-        console.log(listId)
+        console.log
     }
     
     function renderEmpty() {
@@ -76,7 +76,7 @@ export default(props) => {
                     </div>
                     <div className="card--items">
                         <form style={{display:"none"}} id={props.idList} className="card--form">
-                            <AddCard idList={props.idList} handler={event=> addCard(event, listId, title )}/>
+                            <AddCard idList={props.idList}/>
                         </form>
                         {cards}
                     </div>

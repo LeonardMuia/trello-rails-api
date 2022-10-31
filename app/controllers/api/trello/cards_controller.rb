@@ -19,7 +19,9 @@ class Api::Trello::CardsController < ApplicationController
   # POST /cards
   def create
 
-    @cards = Card.add_card(card_params)
+    # Instead of adding card to the database, save it in the Trello API
+    Card.add_card(card_params)
+
 
   end
 
@@ -45,7 +47,7 @@ class Api::Trello::CardsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def card_params
-      params.permit(:name, :list)
+      params.permit(:idList, :name)
     end
-    
+
 end

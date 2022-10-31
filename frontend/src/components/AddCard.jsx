@@ -8,8 +8,9 @@ export default(props) => {
         const title = document.getElementById(`text-area-${props.idList}`).value
 
         const createCard = function(title) {
-                const url = `http://localhost:3000/api/trello/cards?list=${props.idList}`;
+                const url = `http://localhost:3000/api/trello/cards`;
                 axios.post(url, {
+                    list: props.idList,
                     name: title
                 }).then(function(response){
                     if(response) {
@@ -19,8 +20,6 @@ export default(props) => {
                 }).catch(error => {
                     errorAlert("An error has occurred.")
                 } )
-
-                props.handler(props.idList,title)
         }
 
         title ? createCard(title) : errorAlert("Please provide a title for the card.");
